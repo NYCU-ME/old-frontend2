@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="flex flex-col h-screen">
+    <NavBar v-bind:isMobileMenuOpen="this.isMobileMenuOpen" v-bind:isLogged="this.isLogged" v-bind:loginUrl="this.loginUrl"></NavBar>
+    <div class="flex-grow bg-[#393431] p-4 text-gray-100">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar';
+import Cookies from 'js-cookie';
+import config from './config.json';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    NavBar
+  },
+  data() {
+    return {
+      isLogged: false,
+      loginUrl: ""
+    };
+  },
+  mounted() {
+    this.loginUrl = config.loginUrl;
+    this.checkLogged();
+  },
+  methods: {
+    async checkLogged() {
+      const token = Cookies.get('token');
+      if(token) this.isLogged = 1;
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
