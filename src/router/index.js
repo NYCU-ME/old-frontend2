@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import AboutUs from '../views/AboutUs.vue'
 import MyProfile from '../views/MyProfile.vue'
+import MyDomains from '../views/MyDomains.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,10 @@ const router = createRouter({
     {
       path: '/profile',
       component: MyProfile
+    },
+    {
+      path: '/domains',
+      component: MyDomains
     }
   ]
 })

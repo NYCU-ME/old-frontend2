@@ -1,10 +1,21 @@
 <template>
   <div class="flex flex-col h-screen">
     <NavBar v-bind:isMobileMenuOpen="this.isMobileMenuOpen" v-bind:isLogged="this.isLogged" v-bind:loginUrl="this.loginUrl"></NavBar>
-    <div class="flex-grow bg-[#393431] p-4 text-gray-100">
+    <div class="parent-element flex-grow p-4 bg-[#52585D] text-gray-300">
       <router-view />
     </div>
   </div>
+  
+  <!--
+  <footer class="footer text-gray-300">
+    <div class="text-center bg-[#363b3f]">
+      <p>NYCU-ME 團隊</p>
+      <p>&copy; 2021 - {{ currentYear }}</p>
+      <break/>
+      <p><a href="https://github.com/NYCU-ME">GitHub</a></p>
+    </div>
+  </footer>
+  -->
 </template>
 
 <script>
@@ -19,10 +30,12 @@ export default {
   data() {
     return {
       isLogged: false,
-      loginUrl: ""
-    };
+      loginUrl: "",
+      currentYear: null
+    }
   },
   mounted() {
+    this.currentYear = new Date().getFullYear()
     this.loginUrl = config.loginUrl;
     this.checkLogged();
   },
@@ -35,3 +48,8 @@ export default {
 }
 </script>
 
+<style>
+.parent-element {
+    position: relative;
+}
+</style>
