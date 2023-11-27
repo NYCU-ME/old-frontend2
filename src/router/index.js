@@ -3,6 +3,7 @@ import HomePage from '../views/HomePage.vue'
 import AboutUs from '../views/AboutUs.vue'
 import MyProfile from '../views/MyProfile.vue'
 import MyDomains from '../views/MyDomains.vue'
+import DomainPanel from '../views/DomainPanel.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,6 +23,10 @@ const router = createRouter({
     {
       path: '/domains',
       component: MyDomains
+    },
+    {
+      path: '/domain',
+      component: DomainPanel
     }
   ]
 })

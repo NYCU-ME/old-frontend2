@@ -23,7 +23,6 @@ export default {
         // Remove the parameter from URL
         const urlWithoutParams = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
         window.history.replaceState({ path: urlWithoutParams }, '', urlWithoutParams);
-        alert("登入成功！");
         location.reload()
       } catch (error) {
         console.error(error);

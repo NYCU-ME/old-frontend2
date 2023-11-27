@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style>
-.parent-element {
-    position: relative;
-}
+    .parent-element {
+        position: relative;
+    }
 </style>

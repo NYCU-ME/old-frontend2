@@ -1,11 +1,16 @@
 <template>
-  <div v-if="isRegistering" class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-2/1 h-1/4 bg-gray-300 text-black">
-    <div class="w-full"><a @click="toggle">(X)</a></div>
+  <div v-if="isRegistering" class="fixed rounded-md top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-2/1 h-1/4 bg-gray-300 text-black">
+    <div class="fixed rounded-t-md bg-[#11191F] text-white transform w-full flex items-center justify-center">
+      <div class="flex items-center">
+        <span>註冊網域</span>
+      </div>
+    </div>
     <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 flex items-center justify-center">
       <div class="flex items-center">
         <input v-model="domain" type="text" class="border border-gray-300 text-black" />
         <span>.{{hosted_domain}}</span>
       </div>
+      <a @click="toggle" class="absolute bottom-0 left-0 bg-red-700 text-white hover:bg-red-500 px-3 py-2 rounded-md text-sm font-medium">取消</a>
       <a @click="submit" class="absolute bottom-0 right-0 bg-gray-700 text-white hover:bg-gray-500 px-3 py-2 rounded-md text-sm font-medium">註冊</a>
     </div>
   </div>
@@ -25,7 +30,7 @@
        <tr v-for="(user_domain, index) in this.domains" :key="index">
             <td class="text-left py-3 px-4">{{ user_domain.domain }}</td>
             <td class="text-left py-3 px-4">{{ user_domain.expDate }}</td>
-            <td class="text-left py-3 px-4">{{ user_domain.id }}</td>
+            <td class="text-left py-3 px-4"><a :href="`/domain?id=${user_domain.id}`">控制面板</a></td>
         </tr>
         <!-- Repeat <tr> for more rows -->
       </tbody>
@@ -83,7 +88,7 @@
         const response = await axios.get(`${config.baseUrl}whoami/`, {headers: `Authorization: Bearer ${token}`});
         const data = response.data;
         this.domains = data.domains;
-        console.log(response)
+        console.log(this.domains)
       }
     }
   }
