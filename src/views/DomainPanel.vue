@@ -149,7 +149,7 @@ export default {
 				"Authorization": `Bearer ${this.token}`
 			};
       try {
-        await axios.delete(url, {}, { headers });
+        await axios.delete(url, { headers });
         alert("移除成功！")
         location.reload()
       } catch (error) {

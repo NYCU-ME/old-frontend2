@@ -1,6 +1,6 @@
 {
-  "domain": "nycu-dev.me",
-  "baseUrl": "http://10.1.1.12:8000/",
-  "webBase": "http://10.1.1.107:8080/",
-  "loginUrl": "https://id.nycu.edu.tw/o/authorize/?client_id=aU756dAGvxyg8JyOUpBcHVa6nkto3EXW5rpd9wzT&response_type=code&scope=profile&redirect_uri=https://nycu-dev.me/"
+  "domain": "nycu.me",
+  "baseUrl": "https://www.nycu.me/api/",
+  "webBase": "https://www.nycu.me/",
+  "loginUrl": "https://id.nycu.edu.tw/o/authorize/?client_id=29ZuGjlHp2R4ctu7lKc6jwLLJjfxrXnuK7LzD55Z&response_type=code&scope=profile&redirect_uri=https://www.nycu.me/"
 }

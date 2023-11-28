@@ -38,6 +38,7 @@ export default {
     this.currentYear = new Date().getFullYear()
     this.loginUrl = config.loginUrl;
     this.checkLogged();
+    document.title = "NYCU-ME"
   },
   methods: {
     async checkLogged() {
