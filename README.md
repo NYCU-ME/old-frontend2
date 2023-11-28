@@ -1,4 +1,4 @@
-# nycu-me-frontend
+# NYCU-ME-frontend
 
 ## Project setup
 ```
