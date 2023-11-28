@@ -7,8 +7,8 @@
     </div>
     <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 flex items-center justify-center">
       <div class="flex items-center">
-        <input v-model="domain" type="text" class="border border-gray-300 text-black" />
-        <span>.{{hosted_domain}}</span>
+        <input v-model="domain" type="text" class="border border-gray-300 text-black w-1/2" />
+        <span class="w-1/2">.{{hosted_domain}}</span>
       </div>
       <a @click="toggle" class="absolute bottom-0 left-0 bg-red-700 text-white hover:bg-red-500 px-3 py-2 rounded-md text-sm font-medium">取消</a>
       <a @click="submit" class="absolute bottom-0 right-0 bg-gray-700 text-white hover:bg-gray-500 px-3 py-2 rounded-md text-sm font-medium">註冊</a>
@@ -32,7 +32,6 @@
             <td class="text-left py-3 px-4">{{ user_domain.expDate }}</td>
             <td class="text-left py-3 px-4"><a :href="`/domain?id=${user_domain.id}`">控制面板</a></td>
         </tr>
-        <!-- Repeat <tr> for more rows -->
       </tbody>
     </table>
   </div>
@@ -69,20 +68,20 @@
       async submit() {
         const domain = this.hosted_domain.split('.').reverse().join('/');
         const url = `${config.baseUrl}domains/${domain}/${this.domain}`;
-				const token = Cookies.get('token');
+        const token = Cookies.get('token');
 
-				try {
-					await axios.post(url, {}, {
-						headers: {
-							'Authorization': `Bearer ${token}`
-						}
-					});
-					alert("新增成功！")
+        try {
+          await axios.post(url, {}, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          alert("新增成功！")
           location.reload()
-				} catch (error) {
-					alert("新增失敗！")
-					console.log(error)
-				}
+        } catch (error) {
+          alert(error.response.data.msg)
+          console.log(error)
+        }
       },
       async getProfile(token) {
         const response = await axios.get(`${config.baseUrl}whoami/`, {headers: `Authorization: Bearer ${token}`});

@@ -26,7 +26,7 @@ export default {
         location.reload()
       } catch (error) {
         console.error(error);
-        alert("登入失敗！");
+        alert(error.response.data.msg);
       }
     }
   }

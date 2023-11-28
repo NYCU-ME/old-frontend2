@@ -3,7 +3,7 @@
     <div class="flex justify-center items-center">
       <div class="md:w-2/3 flex">
         <div class="md:w-1/3">
-          <img src="https://avatars.githubusercontent.com/u/30391069?v=4" alt="Lin Lee" class="object-cover w-full">
+          <img src="https://avatars.githubusercontent.com/u/30391069?v=4" width="160" height="160" alt="Lin Lee" class="object-cover">
         </div>
         <div class="hidden md:block w-2/3 h-48 flex p-8">
           <ul class="list-disc"> 
@@ -31,13 +31,14 @@
     </div>
   </div>
 
+
   <div class="p-16">
     <div class="flex justify-center items-center">
       <div class="md:w-2/3 flex">
         <div class="md:w-1/3">
-          <img src="https://avatars.githubusercontent.com/u/39057640?v=4" alt="Lin Lee" class="object-cover w-full h-full">
+          <img src="https://avatars.githubusercontent.com/u/39057640?v=4" width="160" height="160" alt="Hyperbola" class="object-cover">
         </div>
-        <div class="hidden md:block w-2/3 h-24 flex items-center justify-center p-8">
+        <div class="hidden md:block w-2/3 h-48 flex p-8">
           <ul class="list-disc"> 
           <li class="list-none"><a href="https://github.com/wdzeng">Hyperbola</a></li>
             <li>共同發起者</li>
@@ -56,5 +57,6 @@
         </div>
     </div>
   </div>
+
 </template>
 
