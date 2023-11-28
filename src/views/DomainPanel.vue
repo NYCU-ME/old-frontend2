@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdding" class="fixed inset-0 m-auto w-3/4 sm:w-1/2 h-3/4 bg-gray-300 text-black">
+  <div v-if="isAdding" class="fixed rounded-md inset-0 m-auto w-3/4 sm:w-1/2 h-3/4 bg-gray-300 text-black">
     <div class="rounded-t-md bg-[#11191F] text-white flex items-center justify-center p-4">
       <div>
         <span>{{ domain }}</span>
