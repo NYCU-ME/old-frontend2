@@ -1,0 +1,34 @@
+name: Deploy Vue.js to Remote Server
+
+on:
+  push:
+    branches:
+      - main  # 你的主要分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '21.2.0'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Copy files to the server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ scp.HOST }}
+        username: ${{ scp.USER }}
+        key: ${{ scp.KEY }}
+        source: "dist/*"
+        target: "/var/www/html/"
+
