@@ -93,7 +93,8 @@ export default {
         const contributor_list = apiServerResponse['data'].concat(backendResponse['data']).concat(frontendResponse['data']);
         
 				for(let i = 0; i < contributor_list.length; i++) {
-					this.contributor_list.push(contributor_list[i]['user']['login'])
+          if(contributor_list[i]['merged_at'] != null)
+						this.contributor_list.push(contributor_list[i]['user']['login'])
 				}
 				console.log(this.contributor_list)
 				const unique = arr => [...new Set(arr)];
