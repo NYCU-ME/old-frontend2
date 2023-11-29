@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdding" class="fixed rounded-md inset-0 m-auto w-3/4 sm:w-1/2 h-3/4 bg-gray-300 text-black">
+  <div v-if="isAdding" class="fixed inset-0 m-auto w-3/4 sm:w-1/2 h-3/4 bg-gray-300 text-black">
     <div class="rounded-t-md bg-[#11191F] text-white flex items-center justify-center p-4">
       <div>
         <span>{{ domain }}</span>
@@ -9,7 +9,7 @@
 		<div class="flex flex-col justify-start items-center h-full pt-3">
 			<div class="mb-4">
 				<span class="text-xl">子網域</span>
-				<input v-model="subDomain" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+				<input v-model="subdomain" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 			</div>
 			<div class="mb-4">
 				<span class="text-xl">1. 選擇 Record 的類別：</span>
@@ -55,6 +55,7 @@
 			<table class="w-full bg-white">
 				<thead class="bg-gray-800 text-white">
 					<tr>
+						<th class="text-left py-3 px-4 uppercase font-semibold text-sm">子網域</th>
 						<th class="text-left py-3 px-4 uppercase font-semibold text-sm">類型</th>
 						<th class="text-left py-3 px-4 uppercase font-semibold text-sm">值</th>
 						<th class="text-left py-3 px-4 uppercase font-semibold text-sm">TTL</th>
@@ -63,10 +64,18 @@
 				</thead>
 				<tbody class="text-gray-700">
 					<tr v-for="(record, index) in this.records" :key="index">
+						<td class="text-left py-3 px-4">@</td>
 						<td class="text-left py-3 px-4">{{ record[1] }}</td>
 						<td class="text-left py-3 px-4">{{ record[2] }}</td>
 						<td class="text-left py-3 px-4">{{ record[3] }}</td>
 						<td class="text-left py-3 px-4"><a @click="delRecord(record[1], record[2])">刪除</a></td>
+					</tr>
+					<tr v-for="(record, index) in this.glues" :key="index">
+						<td class="text-left py-3 px-4">{{ record[0] }}</td>
+						<td class="text-left py-3 px-4">{{ record[1] }}</td>
+						<td class="text-left py-3 px-4">{{ record[2] }}</td>
+						<td class="text-left py-3 px-4">{{ record[3] }}</td>
+						<td class="text-left py-3 px-4"><a @click="delGlueRecord(record[0], record[1], record[2])">刪除</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -88,6 +97,7 @@ export default {
 			isAdding: false,
       domain: "",
       records: [],
+      glues: [],
       subdomain: '@',
       recordType: 'A',
       recordValue: '',
@@ -115,11 +125,12 @@ export default {
       });
       const data = response.data;
       const domains = data.domains;
-      console.log(domains)
+      console.log(data)
       for(let i = 0; i < domains.length; i++) {
         if(domains[i].id == this.id) {
           this.domain = domains[i].domain;
           this.records = domains[i].records;
+          this.glues = domains[i].glues;
         }
       }
       if(this.domain == "") {
@@ -129,22 +140,41 @@ export default {
       console.log(this.records);
     },
 		async submit(){
-			const domain = this.domain.split('.').reverse().join('/');
-			const url = `${config.baseUrl}ddns/${domain}/records/${this.recordType}/${this.recordValue}`;
-			const data = {
-				ttl: this.ttl
-			};
-			const headers = {
-        "Content-Type": "application/json",
-				"Authorization": `Bearer ${this.token}`
-			};
-      try {
-        await axios.post(url, data, { headers });
-        alert("新增成功！")
-        location.reload()
-      } catch (error) {
-				console.error(error)
-				alert(error.response.data.msg)
+      const domain = this.domain.split('.').reverse().join('/');
+      if(this.subdomain == "@") {
+        const url = `${config.baseUrl}ddns/${domain}/records/${this.recordType}/${this.recordValue}`;
+        const data = {
+          ttl: this.ttl
+        };
+        const headers = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.token}`
+        };
+        try {
+          await axios.post(url, data, { headers });
+          alert("新增成功！")
+          location.reload()
+        } catch (error) {
+          console.error(error)
+          alert(error.response.data.msg)
+        }
+      } else {
+        const url = `${config.baseUrl}glue/${domain}/records/${this.subdomain}/${this.recordType}/${this.recordValue}`;
+        const data = {
+          ttl: this.ttl
+        };
+        const headers = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.token}`
+        };
+        try {
+          await axios.post(url, data, { headers });
+          alert("新增成功！")
+          location.reload()
+        } catch (error) {
+          console.error(error)
+          alert(error.response.data.msg)
+        }
       }
 		},
     async delRecord(type_, value) {
@@ -154,7 +184,22 @@ export default {
 				"Authorization": `Bearer ${this.token}`
 			};
       try {
-        await axios.delete(url, { headers });
+        await axios.delete(url, { headers: headers });
+        alert("移除成功！")
+        location.reload()
+      } catch (error) {
+				console.error(error)
+				alert(error.response.data.msg)
+      }
+    },
+    async delGlueRecord(subdomain, type_, value) {
+			const domain = this.domain.split('.').reverse().join('/');
+			const url = `${config.baseUrl}glue/${domain}/records/${subdomain}/${type_}/${value}`;
+			const headers = {
+				"Authorization": `Bearer ${this.token}`
+			};
+      try {
+        await axios.delete(url, { headers: headers });
         alert("移除成功！")
         location.reload()
       } catch (error) {
