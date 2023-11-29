@@ -8,6 +8,10 @@
 
 		<div class="flex flex-col justify-start items-center h-full pt-3">
 			<div class="mb-4">
+				<span class="text-xl">子網域</span>
+				<input v-model="subDomain" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+			</div>
+			<div class="mb-4">
 				<span class="text-xl">1. 選擇 Record 的類別：</span>
 				<select v-model="recordType" id="dnsRecordType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 					<option value="A">A</option>
@@ -84,6 +88,7 @@ export default {
 			isAdding: false,
       domain: "",
       records: [],
+      subdomain: '@',
       recordType: 'A',
       recordValue: '',
       ttl: 5,
