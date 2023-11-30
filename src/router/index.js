@@ -4,6 +4,7 @@ import AboutUs from '../views/AboutUs.vue'
 import MyProfile from '../views/MyProfile.vue'
 import MyDomains from '../views/MyDomains.vue'
 import DomainPanel from '../views/DomainPanel.vue'
+import StatisticsPage from '../views/StatisticsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,6 +28,10 @@ const router = createRouter({
     {
       path: '/domain',
       component: DomainPanel
+    },
+    {
+      path: '/statics',
+      component: StatisticsPage
     }
   ]
 })

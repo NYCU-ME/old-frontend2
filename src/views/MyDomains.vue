@@ -23,6 +23,7 @@
         <tr>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">網域名稱</th>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">有效日期</th>
+          <th class="text-left py-3 px-4 uppercase font-semibold text-sm">統計</th>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">操作</th>
         </tr>
       </thead>
@@ -30,6 +31,7 @@
        <tr v-for="(user_domain, index) in this.domains" :key="index">
             <td class="text-left py-3 px-4">{{ user_domain.domain }}</td>
             <td class="text-left py-3 px-4">{{ user_domain.expDate }}</td>
+            <td class="text-left py-3 px-4"><a :href="`/statics?id=${user_domain.id}`">統計資料</a></td>
             <td class="text-left py-3 px-4"><a :href="`/domain?id=${user_domain.id}`">控制面板</a></td>
         </tr>
       </tbody>

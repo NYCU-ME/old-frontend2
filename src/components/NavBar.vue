@@ -22,7 +22,6 @@
     <div class="px-2 pt-2 pb-3 space-y-1">
       <ul>
         <li><a href="/dashboard">儀表板</a></li>
-        <li><a href="/statics">統計</a></li>
         <li><a href="/domains">DNS 管理</a></li>
         <hr/>
         <li><a href="/profile">個人資料</a></li>
