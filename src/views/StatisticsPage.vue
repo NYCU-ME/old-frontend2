@@ -1,12 +1,19 @@
 <template>
-  <div class="m-8 flex h-screen justify-center mb-8 p-16">
-    <div class="w-1/2">
-      <div class="border text-center border-gray-300">
-        <div class="bg-gray-300 text-black w-full">流量</div>
-        <p>{{ this.num }}</p>
-        <p>次查詢</p>
-      </div>
-    </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="text-left py-3 px-4 uppercase font-semibold text-sm">日期</th>
+          <th class="text-left py-3 px-4 uppercase font-semibold text-sm">查詢次數</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+       <tr v-for="(entry, index) in this.data" :key="index">
+            <td class="text-left py-3 px-4">{{ entry[0] }}</td>
+            <td class="text-left py-3 px-4">{{ entry[1] }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </template>
@@ -23,7 +30,6 @@ export default {
       id: 0,
       token: "",
       data: [],
-      num: "",
     }
   },
   created() {
@@ -62,7 +68,8 @@ export default {
       };
       try {
         const response = await axios.get(url, { headers: headers });
-        this.num = response.data.num;
+        this.data = response.data.data.reverse();
+        console.log(this.data)
       } catch (error) {
         console.error(error)
         alert(error.response.data.msg)
