@@ -75,7 +75,7 @@
 						<td class="text-left py-3 px-4">{{ record[2] }}</td>
 						<td class="text-left py-3 px-4">{{ record[3] }}</td>
 						<td class="text-left py-3 px-4">{{ record[4] }}</td>
-						<td class="text-left py-3 px-4"><a @click="delGlueRecord(record[0], record[1], record[2])">刪除</a></td>
+						<td class="text-left py-3 px-4"><a @click="delGlueRecord(record[1], record[2], record[3])">刪除</a></td>
 					</tr>
 				</tbody>
 			</table>
