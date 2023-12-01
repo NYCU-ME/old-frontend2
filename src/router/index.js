@@ -5,6 +5,7 @@ import MyProfile from '../views/MyProfile.vue'
 import MyDomains from '../views/MyDomains.vue'
 import DomainPanel from '../views/DomainPanel.vue'
 import StatisticsPage from '../views/StatisticsPage.vue'
+import DashboardPage from '../views/DashboardPage.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +33,10 @@ const router = createRouter({
     {
       path: '/statics',
       component: StatisticsPage
+    },
+    {
+      path: '/dashboard',
+      component: DashboardPage
     }
   ]
 })
