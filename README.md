@@ -2,6 +2,7 @@
 
 ## 架構
 
+這個專案是 vue3，使用 vue-router plugin。
 `src/App.vue` 是主要應用程式，他會依據 URL 的不同，從 `src/router/index.js` 中選擇不同的 View 給 Render 出來。
 所有的設定都在 `src/config.json` 當中。
 
