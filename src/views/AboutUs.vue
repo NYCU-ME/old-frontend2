@@ -87,10 +87,11 @@ export default {
         const apiServerResponse = await axios.get('https://api.github.com/repos/NYCU-ME/backend-flask-server/pulls?state=closed');
         const backendResponse = await axios.get('https://api.github.com/repos/NYCU-ME/backend/pulls?state=closed');
         const frontendResponse = await axios.get('https://api.github.com/repos/NYCU-ME/frontend/pulls?state=closed');
+        const contributorsResponse = await axios.get('https://api.github.com/repos/NYCU-ME/contributors/pulls?state=closed');
 
 
         // Concatenate contributors from all sources
-        const contributor_list = apiServerResponse['data'].concat(backendResponse['data']).concat(frontendResponse['data']);
+        const contributor_list = apiServerResponse['data'].concat(backendResponse['data']).concat(frontendResponse['data']).concat(contributorsResponse['data']);
         
 				for(let i = 0; i < contributor_list.length; i++) {
           if(contributor_list[i]['merged_at'] != null)
