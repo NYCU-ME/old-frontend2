@@ -139,8 +139,14 @@ export default {
       }
       console.log(this.records);
     },
+    convert(type_, value) {
+      if(type_ == 'TXT')
+        return btoa(value);
+      return value;
+    },
 		async submit(){
       const domain = this.domain.split('.').reverse().join('/');
+      this.recordValue = this.convert(this.recordType, this.recordValue);
       if(this.subdomain == "@") {
         const url = `${config.baseUrl}ddns/${domain}/records/${this.recordType}/${this.recordValue}`;
         const data = {
@@ -179,6 +185,7 @@ export default {
 		},
     async delRecord(type_, value) {
 			const domain = this.domain.split('.').reverse().join('/');
+      value = this.convert(type_, value)
 			const url = `${config.baseUrl}ddns/${domain}/records/${type_}/${value}`;
 			const headers = {
 				"Authorization": `Bearer ${this.token}`
@@ -194,6 +201,7 @@ export default {
     },
     async delGlueRecord(subdomain, type_, value) {
 			const domain = this.domain.split('.').reverse().join('/');
+      value = this.convert(type_, value)
 			const url = `${config.baseUrl}glue/${domain}/records/${subdomain}/${type_}/${value}`;
 			const headers = {
 				"Authorization": `Bearer ${this.token}`
