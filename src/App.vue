@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <NavBar v-bind:isMobileMenuOpen="this.isMobileMenuOpen" v-bind:isLogged="this.isLogged" v-bind:loginUrl="this.loginUrl"></NavBar>
+    <NavBar v-bind:isMobileMenuOpen="this.isMobileMenuOpen" v-bind:isLogged="this.isLogged" loginUrl="/login"></NavBar>
     <div class="parent-element flex-grow p-4 bg-[#52585D] text-gray-300">
       <router-view />
     </div>

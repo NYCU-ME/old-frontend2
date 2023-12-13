@@ -70,7 +70,6 @@ export default {
     },
     logout() {
       Cookies.remove('token');
-      console.log("logout");
       location.reload();
     }
   },
