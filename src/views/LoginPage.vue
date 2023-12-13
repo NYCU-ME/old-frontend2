@@ -3,7 +3,7 @@
     <div class="flex flex-col h-full pt-3">
       <div class="flex items-center">
         <label for="email" class="w-16">信箱：</label>
-        <input v-model.number="email" id="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
+        <input v-model="email" id="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
       </div>
       <a :href="oauthUrl" class="absolute bottom-5 left-5 bg-gray-700 text-white hover:bg-gray-500 px-3 py-2 rounded-md text-sm font-medium">交大 OAuth</a>
       <a @click="submit" class="absolute bottom-5 right-5 bg-gray-700 text-white hover:bg-gray-500 px-3 py-2 rounded-md text-sm font-medium">登入</a>
